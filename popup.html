@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>推文过滤设置</title>
+  <style>
+    body { 
+      font-family: Arial, sans-serif; 
+      padding: 10px; 
+      width: 400px; /* 将宽度设置为 400px，可根据需要调整 */
+    }
+    input { width: 80%; }
+    button { margin-left: 5px; }
+    ul { padding: 0; list-style-type: none; }
+    li { margin: 5px 0; }
+  </style>
+</head>
+<body>
+  <h2>关键词过滤设置</h2>
+  <input type="text" id="keyword" placeholder="输入关键词">
+  <button id="add">添加</button>
+  <h3>当前关键词</h3>
+  <ul id="keywordList"></ul>
+  <script src="popup.js"></script>
+</body>
+</html>
