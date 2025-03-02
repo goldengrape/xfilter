@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         清爽一X
-// @namespace    https://github.com/goldengrape/xfilter
-// @version      1.0
-// @description  过滤 x.com 上包含指定关键词的推文
+// @namespace    https://example.com/cleansX
+// @version      1.1
+// @description  过滤 x.com 上包含指定关键词的推文和通知
 // @match        https://*.x.com/*
 // @grant        GM.getValue
 // @grant        GM.setValue
@@ -38,7 +38,7 @@
             keywords = input.split(',').map(k => k.trim()).filter(k => k);
             await saveKeywords();
             alert("关键词已更新: " + keywords.join(', '));
-            filterTweets(); // 更新后立即执行过滤
+            filterContent(); // 更新后立即执行过滤
         }
     }
 
@@ -47,29 +47,29 @@
         GM.registerMenuCommand("设置过滤关键词", setKeywords);
     }
 
-    // 过滤推文函数
-    function filterTweets() {
+    // 过滤推文和通知的函数
+    function filterContent() {
         if (keywords.length === 0) return;
-        // 匹配所有推文元素（不论是 <div>、<article> 等）
-        const tweets = document.querySelectorAll('[data-testid="tweet"]');
-        tweets.forEach(tweet => {
-            const text = tweet.innerText.toLowerCase();
+        // 匹配所有推文和通知（不论是 <div>、<article> 等）
+        const elements = document.querySelectorAll('[data-testid="tweet"], [data-testid="notification"]');
+        elements.forEach(el => {
+            const text = el.innerText.toLowerCase();
             const shouldHide = keywords.some(kw => text.includes(kw.toLowerCase()));
             if (shouldHide) {
-                tweet.style.display = 'none';
+                el.style.display = 'none';
             }
         });
     }
 
-    // 监控页面变化，过滤动态加载的推文
+    // 监控页面变化，过滤动态加载的内容
     const observer = new MutationObserver(() => {
-        filterTweets();
+        filterContent();
     });
     observer.observe(document.body, {childList: true, subtree: true});
 
     // 初次加载时，先读取关键词再过滤
     loadKeywords().then(() => {
-        filterTweets();
+        filterContent();
     });
 
 })();
