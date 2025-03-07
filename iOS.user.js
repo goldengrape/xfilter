@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         清爽一X
-// @namespace    https://github.com/goldengrape/xfilter
+// @namespace    https://example.com/cleansX
 // @version      1.0
 // @description  过滤 x.com 上包含指定关键词的推文
 // @match        https://*.x.com/*
