@@ -9,7 +9,11 @@
     },
     "content_scripts": [
       {
-        "matches": ["https://x.com/*"],
+        "matches": [
+          "https://x.com/*",
+          "https://bsky.app/*",
+          "https://mastodon.online/*"
+        ],
         "js": ["content.js"],
         "run_at": "document_end"
       }

@@ -6,7 +6,7 @@ function filterContent() {
     if (keywords.length === 0) return;
     
     // 同时匹配推文和通知
-    const elements = document.querySelectorAll('[data-testid="tweet"], [data-testid="notification"]');
+    const elements = document.querySelectorAll('[data-testid="tweet"], [data-testid="notification"],[data-testid="postText"],[data-testid="contentHider-post"],[class="status__content__text status__content__text--visible translate"]');
     console.log('Found elements:', elements.length);
     
     elements.forEach(el => {
